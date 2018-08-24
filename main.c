@@ -1,6 +1,6 @@
 // I know it is silly, but it seem that the compiler of ROBOTC does not know how to compile from multiple files.
 
-#include "PWM.c"
+#include "motor.c"
 
 task main()
 {
