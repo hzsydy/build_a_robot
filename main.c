@@ -10,17 +10,11 @@
 // calibration
 int lowIR = 1000; //Arbitrary high number so the calibration will work
 int highIR = 0;
-int calibration_duration = 50;
-int calibration_count = 0;
-
-// line-following
-int following_speed = 20;
 int threshold = -1;
-
 
 task main()
 {
-  for(int i=0; i< calibration_duration; i++) {
+  for(int i=0; i< 50; i++) {
     if(SensorValue[leftIR] > highIR) {
       highIR = SensorValue[leftIR];
       } else if(SensorValue[leftIR] < lowIR) {
@@ -73,20 +67,20 @@ task main()
 
 	  if (!flag_left)
 	    {
-	      // counter-steer left:
+	      // turn left:
 			  motor[leftServo]  = -30;
 			  motor[rightServo]  = 30;
-			  delay(30)
+			  delay(30);
 	      motor[leftServo]  = 40;
 	      motor[rightServo] = 40;
     		delay(100);
 	    }
 	  else if (!flag_right)
 	    {
-	      // counter-steer right:
+	      // turn right:
 	    	motor[leftServo]  = -30;
 			  motor[rightServo]  = 30;
-			  delay(30)
+			  delay(30);
 	      motor[leftServo]  = -40;
 	      motor[rightServo] = -40;
     		delay(100);
@@ -96,11 +90,7 @@ task main()
 	  motor[leftServo]  = -60;
 	  motor[rightServo]  = 60;
 	   }
-	  writeDebugStreamLine("left %ld mid %ld right %ld, lowIR %d highIR %d, flag_left %d flag_center %d flag_right %d",
-			SensorValue[leftIR],
-			SensorValue[centerIR],
-			SensorValue[rightIR],
-			lowIR, highIR,
+	  writeDebugStreamLine("flag_left %d flag_center %d flag_right %d",
 			flag_left,
 			flag_center,
 			flag_right
