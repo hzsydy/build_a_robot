@@ -1,19 +1,11 @@
+// I know it is silly, but it seem that the compiler of ROBOTC does not know how to compile from multiple files.
 
-
-void pwm(int port, int hghtime, int tottime) {
-	while (True) {
-		motor[port] = 127;
-		wait1MSec(hghtime);
-		motor[port] = -127;
-		wait1MSec(tottime-hghtime);
-	}
-}
-
-
+#include "PWM.c"
 
 task main()
 {
-	printf()
-
-
+	startTask(run_motor, 10);
+	startTask(_test_motor, 50);
+	while(true)
+		;
 }
